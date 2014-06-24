@@ -7,3 +7,4 @@ Creating a new branch is quick and simple.
 nimeide no-ff
 stash add
 zhangshuqi
+bendijia
