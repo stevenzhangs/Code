@@ -23,12 +23,34 @@ StringBad::StringBad()
 	cout << num_strings << ": \"" << str << "\" default object created\n";
 }
 
+StringBad::StringBad(const StringBad &sb)
+{
+	num_strings++;
+	len = sb.len;
+	str = new char [len + 1];
+	std::strcpy(str, sb.str);
+	cout << "Copy Constructor " << num_strings << ": \"" << str << "\" object created.\n";
+}
+
 StringBad::~StringBad()
 {
 	cout << "\"" << str << "\" object deleted, ";
 	--num_strings;
 	cout << num_strings << " left\n";
 	delete [] str;
+}
+
+StringBad & StringBad::operator=(const StringBad &sb)
+{
+	if (this == &sb)
+		return *this;
+
+	delete [] str;
+	len = sb.len;
+	str = new char [len + 1];
+	std::strcpy(str, sb.str);
+	cout << "assignment operator: \"" << str << "\"\n";
+	return *this;
 }
 
 std::ostream & operator<<(std::ostream &os, const StringBad &st)

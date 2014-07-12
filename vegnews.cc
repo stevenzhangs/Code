@@ -3,10 +3,35 @@
 
 using namespace std;
 
+void callme1(StringBad &);
+void callme2(StringBad);
+
 int main()
 {
-	StringBad mystring = "你妈了个bi";
-	cout << mystring << endl;
+	{
+		cout << "Starting an inner block.\n";
+		StringBad headline1("Celery Stalks at Midnight");
+		StringBad headline2("Lettuce Prey");
+		StringBad sports("Spinach Leaves Bowl for Dollars");
+		cout << "headline1: " << headline1 << endl;
+		cout << "headline2: " << headline2 << endl;
+		cout << "sports: " << sports << endl;
+		callme1(headline1);
+		cout << "headline1: " << headline1 << endl;
+		callme2(headline2); // copy constructor and end destructor
+		cout << "headline2: " << headline2 << endl; // error has destructor
+		
+		cout << "Initialize one object to another:\n";
+		StringBad sailor = sports; // copy constructor
+		cout << "sailor: " << sailor << endl;
+		cout << "Assign one object to another:\n";
+		StringBad knot;
+		knot = headline1; // assigned
+		cout << "knot: " << knot << endl;
+		cout << "Exiting the block.\n";
+	} //knot(headline1),sailor(sports),sports(error),headline2(error),headline1(error)
+
+	cout << "End of main()\n";
 
 	return 0;
 }
